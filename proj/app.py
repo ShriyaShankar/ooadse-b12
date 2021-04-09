@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, static_url_path='/uploads')
+app = Flask(__name__, static_url_path='')
  
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -12,7 +12,7 @@ app.config['MYSQL_DB'] = 'ooad_youtube'
 
 mysql = MySQL(app)
 
-UPLOAD_FOLDER = '/home/shriya/Desktop/ooad_lab/proj/static/uploads'
+UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
