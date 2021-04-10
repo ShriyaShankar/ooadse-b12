@@ -38,9 +38,17 @@ def index():
             #return redirect(url_for('uploaded_file', filename=filename))
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO video_data(video_title, video_description, video_url, filename) VALUES (%s, %s, %s, %s)", (title, description, path, filename))
+
+        cur.execute("SELECT video_title, filename FROM video_data")
+        data = cur.fetchall()
+        print(data)
+        l = []
+        for i in range(len(data)):
+            l.append(data[i][0])
+        print(l)
         mysql.connection.commit()
         cur.close()
-        return render_template('testing.html', filename=filename)
+        return render_template('testing.html', filename=data)
     return render_template('index.html')
 
 if __name__ == '__main__':
