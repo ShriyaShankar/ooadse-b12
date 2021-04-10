@@ -1,0 +1,18 @@
+1. To create database:
+CREATE DATABASE ooad_youtube;
+
+2. To create Video Manager table:
+CREATE TABLE video_data (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  video_title VARCHAR(100),
+  video_description VARCHAR(200),
+  video_url VARCHAR(200),
+  filename VARCHAR(100)
+);
+
+2. To create Playlist Manager table:
+CREATE TABLE playlists (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  playlist_name VARCHAR(100),
+  video_names VARCHAR(100)
+);
