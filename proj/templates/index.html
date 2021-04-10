@@ -1,21 +1,8 @@
-<!doctype html>
-    <title>Upload File</title>
-    <style>
-    body {
-        background-image: url(https://i0.wp.com/banglarblog.com/media/img/bg/Black_Red_Fade_YouTube_Thumbnail_Background-BanglarBlog.jpg?w=1320);
-    }
-    .button {
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
-    .button1 {background-color: #000000;}
+<html>
+    <head>
+        <link rel="stylesheet" type = "text/css" href="style.css">
+        <title>Upload File</title>
+    </head>
 
     </style>
     <body>
@@ -23,22 +10,13 @@
         <h1>YouTube Player</h1>
         <br>
         <br>
-        <h3>In order to maintain YouTube standards, fill out the following details to upload a video:</h3>
-        <form method=post enctype=multipart/form-data>
-            <h4>Enter Video Name:</h4>
-            <input type = "text" name= "video_title" />
-            <br>
-            <br>
-            <h4>Enter Video Description:</h4>
-            <input type = "text" name = "video_description" /> 
-            <br>
-            <h4>Upload Video File:</h4>
-            <input type=file name=file>
-            <br>
-            <br>
-        <h3> By uploading a video, you promise to adhere by the guidelines and standards set by YouTube. </h3>
-        <button class="button button1">Upload</button>
+        <h3>Manage Videos</h3>
+        <form method="post" action="/manage-video.py">
+            <button class="button button1"name="submit_button" value="Upload Video">Upload Video</button>
+            <button class="button button1"name="submit_button" value="Delete Video">Delete Video</button>
         </form>
+       
     </center>
     </body>
 
+</html>

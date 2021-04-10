@@ -22,6 +22,26 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    return render_template('index.html')
+
+
+@app.route('/manage-video.py', methods=['GET', 'POST'])
+def manage_video():
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'Upload Video':
+            return render_template('upload.html')
+        elif request.form['submit_button'] == 'Delete Video':
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT video_title, filename, id FROM video_data")
+            data = cur.fetchall()
+            mysql.connection.commit()
+            cur.close()
+            return render_template('delete_video.html', filename=data)
+    return render_template(index.html)
+
+
+@app.route('/upload.py', methods=['GET', 'POST'])
+def upload_video():
     if request.method == "POST":
         path = ''
         filename = ''
@@ -48,8 +68,30 @@ def index():
         print(l)
         mysql.connection.commit()
         cur.close()
-        return render_template('testing.html', filename=data)
-    return render_template('index.html')
+        return render_template('uploaded_video.html', filename=data)
+
+@app.route('/deleted.py', methods=['GET', 'POST'])
+def delete_from_db():
+    if request.method == 'POST':
+        details = request.form
+        l = details.getlist('videos')
+        cur = mysql.connection.cursor()
+        for name in l:
+            query = "DELETE FROM video_data WHERE id = %s"
+            cur.execute(query, (name,))
+            mysql.connection.commit()
+
+    cur.execute("SELECT video_title, filename FROM video_data")
+    data = cur.fetchall()
+   # print(data)
+    l = []
+    for i in range(len(data)):
+        l.append(data[i][0])
+   # print(l)
+    mysql.connection.commit()
+    cur.close()
+    return render_template('uploaded_video.html', filename=data)
+        
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

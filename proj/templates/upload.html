@@ -1,0 +1,29 @@
+<!doctype html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Upload Filt</title>
+    </head>
+    <body>
+    <center>
+        <h1>YouTube Player</h1>
+        <br>
+        <br>
+        <h3>In order to maintain YouTube standards, fill out the following details to upload a video:</h3>
+        <form method=post enctype=multipart/form-data action="upload.py">
+            <h4>Enter Video Name:</h4>
+            <input type = "text" name= "video_title" />
+            <br>
+            <br>
+            <h4>Enter Video Description:</h4>
+            <input type = "text" name = "video_description" /> 
+            <br>
+            <h4>Upload Video File:</h4>
+            <input type=file name=file>
+            <br>
+            <br>
+        <h3> By uploading a video, you promise to adhere by the guidelines and standards set by YouTube. </h3>
+        <button class="button button1">Upload</button>
+        </form>
+    </center>
+    </body>
+

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Create Playlist</title>
+    </head>
+    <body>
+        <form method="post" action="your-playlist.py">
+            <h3>Enter Playlist Name</h3>
+            <input type="text" id="playlist_name" name="playlist_name" required>
+            <br>
+            <h3>Slect videos to add to playlist:</h3>
+            {%- for item in filename %}
+            <video width="320" height="240" controls>
+                    <source src="/uploads/{{ item[1] }}" type="video/mp4" controls/>
+                </video>
+                <br>
+            <input type="checkbox" id="{{ item[0] }}" name="videos" value="{{ item[0] }}">
+                <label for="{{ item[0] }}"> {{ item[0] }}</label>
+                <br> <br>
+            {%- endfor %}
+            <br>
+            <button class="button button1">Create</button>
+        </form>
+    </body>
+</html>

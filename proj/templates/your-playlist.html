@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Your Playlist</title>
+    </head>
+    <body>
+        <p><h3><center>Your playlist had been created!</center></h3></p>
+        <p><h2>Playlist: {{ data }}</h2></p>
+		<div class="row">					
+            {%- for item in filename %}
+                <div class="column">
+						<video width="320" height="240" controls>
+                            <source src="/uploads/{{ item[0] }}" type="video/mp4" controls/>
+                        </video>
+                        <h3> {{item[1] }} </h3> <br>
+                </div>
+			{%- endfor %}
+        </div>
+       
+    </body>
+</html>
