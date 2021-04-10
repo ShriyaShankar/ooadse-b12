@@ -14,5 +14,5 @@ CREATE TABLE video_data (
 CREATE TABLE playlists (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   playlist_name VARCHAR(100),
-  video_names VARCHAR(100)
+  video_names VARCHAR(500)
 );
