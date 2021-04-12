@@ -14,7 +14,7 @@
             <button class="button button1"name="submit_button" value="Home">Home</button>
         </form>
         <p><h3><center>Select the videos you wish to delete:</center></h3></p>
-        
+        <center>
 		<form method="post" action="deleted.py">
             {%- for item in filename %}
               <video width="320" height="240" controls>
@@ -23,16 +23,16 @@
               
                 <br>
               <input type="checkbox" id="{{ item[2] }}" name="videos" value="{{ item[2] }}">
-                <label for="{{ item[2] }}"> {{ item[0] }}</label>
+                <label for="{{ item[2] }}"> {{ item[0] }} : {{ item[3] }}</label>
                
                 <br> <br>
             {%- endfor %}
             <br>
     
             <button class="button button1">Delete</button>
-    
-    
+
         </form>
+    </center>
        
     </body>
 </html>

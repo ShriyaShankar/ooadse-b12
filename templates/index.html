@@ -32,21 +32,23 @@
        
     </center>
     <br><br>
-    <div class="row">	
-        <center><h2>Your Videos</h2></center>	
-        <br>			
-        {%- for item in filename %}
-            <div class="column">
-                    <video width="360" height="200" style="position: sticky; float: left; margin-left:20px" controls>
-                        <source src="/uploads/{{ item[2] }}" type="video/mp4" controls/>
-                    </video>
+    <center>
+    <div>
+        <div class="row">	
+            <center><h2>Videos</h2></center>	
+            <br>			
+            {%- for item in filename %}
+                <div class="column">
+                        <video width="360" height="200" style="position: sticky; float: left; margin-left:20px; padding: 15px;" controls>
+                            <source src="/uploads/{{ item[2] }}" type="video/mp4" controls/>
+                        </video>
+                </div>
+                
 
-            </div>
-
-        {%- endfor %}
-
-
-    </div>
+            {%- endfor %}
+        </div>
+    </div>  
+</center>
 
     </body>
 

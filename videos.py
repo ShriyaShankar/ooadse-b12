@@ -97,7 +97,7 @@ def manage():
 
         elif request.form['submit_button'] == 'Delete Video':
             cur = mysql.connection.cursor() # establish connection
-            cur.execute("SELECT video_title, filename, id FROM video_data") 
+            cur.execute("SELECT video_title, filename, id, video_description FROM video_data") 
             data = cur.fetchall() # fetches all data retrieved in previous SQL statement
             mysql.connection.commit() # commit query
             cur.close() # close connection
@@ -105,7 +105,7 @@ def manage():
 
         elif request.form['submit_button'] == 'Create Playlist':
             cur = mysql.connection.cursor()
-            cur.execute("SELECT video_title, filename FROM video_data")
+            cur.execute("SELECT video_title, filename, video_description FROM video_data")
             data = cur.fetchall()
            # print(data)
             if len(data)==0: 
@@ -127,8 +127,12 @@ def manage():
             print(s)
             if len(s)==0:
                 return render_template('/error_handle.html', filename='You have deleted all your playlists. Go back Home to create new playlist.')
-
-            return render_template('delete_playlist.html', filename=s)
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT video_title, video_description, filename FROM video_data")
+            data2 = cur.fetchall()
+            mysql.connection.commit()
+            cur.close()
+            return render_template('delete_playlist.html', filename=s, data=data2)
     # if neither, go back to index.html for user to choose 
     return render_template(index.html)
 
@@ -154,7 +158,7 @@ def upload_video():
         cur = mysql.connection.cursor() # establish connection
         video.upload_to_db()
         # code to display all videos in DB
-        cur.execute("SELECT video_title, filename FROM video_data")
+        cur.execute("SELECT video_title, filename, video_description FROM video_data")
         data = cur.fetchall() # fetches data returned by previous SQL statement
         #print(data)
         mysql.connection.commit() # commits the query
@@ -176,7 +180,7 @@ def delete_from_db():
             cur.execute(query, (name,))
             mysql.connection.commit()
 
-    cur.execute("SELECT video_title, filename FROM video_data") # select remaining videos
+    cur.execute("SELECT video_title, filename, video_description FROM video_data") # select remaining videos
     data = cur.fetchall()
    # print(data)
     mysql.connection.commit()
@@ -236,7 +240,12 @@ def delete_playlist():
         cur.close()
         if len(s)==0:
             return render_template('/error_handle.html', filename='You have deleted all your playlists. Go back Home to create new playlist.')
-    return render_template('display_playlists.html', filename = s)
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT video_title, video_description, filename FROM video_data")
+    data2 = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
+    return render_template('display_playlists.html', filename = s, data=data2)
         
 
 if __name__ == '__main__':

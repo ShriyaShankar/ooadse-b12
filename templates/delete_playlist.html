@@ -25,6 +25,22 @@
 
     </center>
     </form>
+    <div>
+        <div class="row">	
+            <br><br>
+            <center><h2>Videos</h2></center>	
+            <br>			
+            {%- for item in data %}
+                <div class="column">
+                        <video width="360" height="200" style="position: sticky; float: left; margin-left:20px; padding: 15px;" controls>
+                            <source src="/uploads/{{ item[2] }}" type="video/mp4" controls/>
+                        </video>
+                </div>
+                
+
+            {%- endfor %}
+        </div>
+    </div>  
 </body>
 
 </html>
