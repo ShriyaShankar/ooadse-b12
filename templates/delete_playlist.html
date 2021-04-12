@@ -3,13 +3,19 @@
         <link rel="stylesheet" href="style.css">
         <title>Delete Playlist</title>
     </head>
+<body>
+    <form method="post" action="/">
+        <button class="button button1"name="submit_button" value="Home">Home</button>
+    </form>
 
-    <form method="post" action="deleted.py">
+    <center>
+    <h2>Playlist Deleter</h2>
+    <form method="post" action="deleted-playlist.py">
+        
         <h3>Select playlist(s) to delete:</h3>
         {%- for item in filename %}
 
-          <input type="checkbox" id="{{ item[0] }}" name="playlist" value="{{ item[0] }}">
-            <label for="{{ item[0] }}"> {{ item[1] }}</label>
+          <input type="checkbox" id="{{ item }}" name="playlist" value="{{ item }}"> {{ item }}
            
             <br> <br>
         {%- endfor %}
@@ -17,7 +23,8 @@
 
         <button class="button button1">Delete</button>
 
-
+    </center>
     </form>
+</body>
 
 </html>

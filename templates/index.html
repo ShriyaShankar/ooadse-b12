@@ -21,8 +21,33 @@
             <button class="button button1"name="submit_button" value="Upload Video">Upload Video</button>
             <button class="button button1"name="submit_button" value="Delete Video">Delete Video</button>
         </form>
+
+        <br><br>
+        <h3>Manage Playlists</h3>
+
+        <form method="post" action="/manage-video.py">
+            <button class="button button1"name="submit_button" value="Create Playlist">Create Playlist</button>
+            <button class="button button1"name="submit_button" value="Delete Playlist">Delete Playlist</button>
+        </form>
        
     </center>
+    <br><br>
+    <div class="row">	
+        <center><h2>Your Videos</h2></center>	
+        <br>			
+        {%- for item in filename %}
+            <div class="column">
+                    <video width="360" height="200" style="position: sticky; float: left; margin-left:20px" controls>
+                        <source src="/uploads/{{ item[2] }}" type="video/mp4" controls/>
+                    </video>
+
+            </div>
+
+        {%- endfor %}
+
+
+    </div>
+
     </body>
 
 </html>

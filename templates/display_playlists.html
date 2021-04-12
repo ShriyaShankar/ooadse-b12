@@ -4,15 +4,20 @@
         <link rel="stylesheet" href="style.css">
         <title>Your Playlists</title>
     </head>
-
-        <h2>Your Playlists:</h2>
+    <body>
+        <form method="post" action="/">
+            <button class="button button1"name="submit_button" value="Home">Home</button>
+        </form>
+    <center>
+        <h2>Your playlists after deletion:</h2>
         <div class="row">					
             {%- for item in filename %}
                 <div class="column">
-                        <h3> {{ item[1] }} </h3> 
+                        <h3> Playlist Name: {{ item }} </h3> 
                 </div>
             {%- endfor %}
         </div>
+    </center>
 
-
+    </body>
 </html>

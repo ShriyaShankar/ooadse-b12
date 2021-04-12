@@ -9,8 +9,13 @@
         <title>Videos</title>
     </head>
     <body>
-        <p><h3><center>Your videos!</center></h3></p>
         
+        <p><h2><center>Your videos!</center></h2></p>
+        <form method="post" action="/">
+            <button class="button button1"name="submit_button" value="Home">Home</button>
+        </form>
+        
+    <center>
 		<div class="row">					
             {%- for item in filename %}
                 <div class="column">
@@ -21,6 +26,7 @@
                 </div>
 			{%- endfor %}
         </div>
+    </center>
        
     </body>
 </html>
