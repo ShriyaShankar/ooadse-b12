@@ -21,14 +21,14 @@
         <h3>In order to maintain YouTube standards, fill out the following details to upload a video:</h3>
         <form method=post enctype=multipart/form-data action="upload.py">
             <h4>Enter Video Name:</h4>
-            <input type = "text" name= "video_title" />
+            <input type = "text" name= "video_title" required />
             <br>
             <br>
             <h4>Enter Video Description:</h4>
             <input type = "text" name = "video_description" /> 
             <br>
             <h4>Upload Video File:</h4>
-            <input type=file name=file>
+            <input type=file name=file required>
             <br>
             <br>
         <h3> By uploading a video, you promise to adhere by the guidelines and standards set by YouTube. </h3>

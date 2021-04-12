@@ -83,9 +83,13 @@ def index():
     cur = mysql.connection.cursor()
     cur.execute("SELECT video_title, video_description, filename FROM video_data")
     data = cur.fetchall()
+    print(len(data))
     mysql.connection.commit()
     cur.close()
-    return render_template('index.html', filename=data) # takes us to index.html (open index.html to understand flow)
+    if len(data) == 0:
+        return render_template('index.html') # takes us to index.html (open index.html to understand flow)
+    else:
+        return render_template('index.html', filename=data) # takes us to index.html (open index.html to understand flow)
 
 # upon clicking a button in index.html, we arrive at /manage-video.py
 @app.route('/manage-video.py', methods=['GET', 'POST'])
@@ -99,6 +103,8 @@ def manage():
             cur = mysql.connection.cursor() # establish connection
             cur.execute("SELECT video_title, filename, id, video_description FROM video_data") 
             data = cur.fetchall() # fetches all data retrieved in previous SQL statement
+            if len(data) == 0:
+                return render_template('/error_handle.html', filename='You do not have any videos to delete.')
             mysql.connection.commit() # commit query
             cur.close() # close connection
             return render_template('delete_video.html', filename=data) # send data fetched to delete_video.html
@@ -130,6 +136,8 @@ def manage():
             cur = mysql.connection.cursor()
             cur.execute("SELECT video_title, video_description, filename FROM video_data")
             data2 = cur.fetchall()
+            if len(data2)==0:
+                return render_template("/error_handle.html", filename='You do not have any videos yet.')
             mysql.connection.commit()
             cur.close()
             return render_template('delete_playlist.html', filename=s, data=data2)
@@ -182,6 +190,8 @@ def delete_from_db():
 
     cur.execute("SELECT video_title, filename, video_description FROM video_data") # select remaining videos
     data = cur.fetchall()
+    if len(data)==0:
+        return render_template("/error_handle.html", filename='You do not have any videos. Go back to Home to upload new videos.')
    # print(data)
     mysql.connection.commit()
     cur.close()
@@ -232,17 +242,20 @@ def delete_playlist():
         cur = mysql.connection.cursor()
         cur.execute("SELECT playlist_name FROM playlists")
         data = cur.fetchall()
+        if len(data) == 0:
+            return render_template('/error_handle.html', filename='You do not have any playlists.')
         print(data)
         s = set()
         for name in data:
             s.add(name[0])
         print(s)
         cur.close()
-        if len(s)==0:
-            return render_template('/error_handle.html', filename='You have deleted all your playlists. Go back Home to create new playlist.')
+        
     cur = mysql.connection.cursor()
     cur.execute("SELECT video_title, video_description, filename FROM video_data")
     data2 = cur.fetchall()
+    if len(data2)==0:
+        return render_template("/error_handle.html", filename='You do not have any videos yet.')
     mysql.connection.commit()
     cur.close()
     return render_template('display_playlists.html', filename = s, data=data2)
