@@ -134,7 +134,7 @@ class recommendationSystem:
 
         user_opinion = input("\nAre you satisfied with the recommendations? (Y/N): ")
         
-        while user_opinion != 'Y':
+        while user_opinion.lower()[0] != 'y':
             bad_recs = input("Enter all unsatisfactory recommendation numbers (starting from 1) separated by comma: ").split(',')
             # print(bad_recs)
             
